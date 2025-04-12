@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MG Cafe and Tea - Bill Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.27/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        label, input, select {
+            width: 100%;
+            margin: 5px 0;
+            padding: 10px;
+        }
+        .items-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            text-align: left;
+            margin-top: 10px;
+        }
+        .items-list label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px;
+            background: #f8f8f8;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .bill-container {
+            text-align: left;
+            margin-top: 20px;
+            padding: 10px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>MG Cafe and Tea</h2>
+        <label for="name">Customer Name:</label>
+        <input type="text" id="name" placeholder="Enter your name" oninput="showBill()">
+        <label for="mobile">Mobile Number:</label>
+        <input type="text" id="mobile" placeholder="Enter mobile number" oninput="showBill()">
+        <div class="items-list" id="items-list"></div>
+        <button onclick="savePDF()">Save PDF</button>
+        <button onclick="sendWhatsApp()">Send via WhatsApp</button>
+        <div id="bill-container" class="bill-container"></div>
+    </div>
+
+    <script>
+        const items = [
+            { itemId: "1", itemName: "Tea", catagory: "Beverage", itemSize: "Small", itemCost: 10 },
+            { itemId: "2", itemName: "Coffee", catagory: "Beverage", itemSize: "Medium", itemCost: 20 },
+            { itemId: "3", itemName: "Sandwich", catagory: "Food", itemSize: "Large", itemCost: 50 },
+            { itemId: "4", itemName: "Pasta", catagory: "Food", itemSize: "Medium", itemCost: 80 },
+            { itemId: "5", itemName: "Cake", catagory: "Dessert", itemSize: "Slice", itemCost: 60 }
+        ];
+
+        const itemsListDiv = document.getElementById("items-list");
+        items.forEach(item => {
+            const label = document.createElement("label");
+            label.innerHTML = `<input type="checkbox" value="${item.itemId}" data-cost="${item.itemCost}" data-name="${item.itemName}" data-category="${item.catagory}" data-size="${item.itemSize}" onchange="showBill()"> ${item.itemName} - ₹${item.itemCost}`;
+            itemsListDiv.appendChild(label);
+        });
+
+        function savePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const name = document.getElementById("name").value || "Guest";
+            const mobile = document.getElementById("mobile").value || "0000000000";
+            const date = new Date().toISOString().slice(0, 10); // YYYY-MM-DD format
+            const fileName = `${name}_${mobile}_${date}.pdf`;
+
+            const selectedItems = document.querySelectorAll(".items-list input:checked");
+
+            doc.text("MG Cafe and Tea - Bill Receipt", 20, 10);
+            doc.text(`Customer Name: ${name}`, 20, 20);
+            doc.text(`Mobile Number: ${mobile}`, 20, 30);
+
+            let tableData = [];
+            let total = 0;
+            selectedItems.forEach(item => {
+                const itemName = item.getAttribute("data-name");
+                const itemCategory = item.getAttribute("data-category");
+                const itemSize = item.getAttribute("data-size");
+                const itemCost = parseInt(item.getAttribute("data-cost"));
+                tableData.push([itemName, itemCategory, itemSize, `₹${itemCost}`]);
+                total += itemCost;
+            });
+            
+            doc.autoTable({
+                head: [["Item Name", "Category", "Size", "Price"]],
+                body: tableData,
+                startY: 40
+            });
+            doc.text(`Total: ₹${total}`, 20, doc.autoTable.previous.finalY + 10);
+            
+            doc.save(fileName);
+        }
+    </script>
+</body>
+</html>
