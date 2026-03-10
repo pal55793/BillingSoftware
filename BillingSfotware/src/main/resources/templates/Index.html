@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MG Cafe And Tea</title>
+    <!-- Loads Tailwind CSS instantly -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Loads icons instantly -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Configures our custom colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#FFD700',
+                        dark: '#0f0f11',
+                    }
+                }
+            }
+        }
+    </script>
+    <style> html { scroll-behavior: smooth; } </style>
+</head>
+<body class="bg-dark text-white font-sans selection:bg-brand selection:text-black min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 bg-dark/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="text-3xl font-black tracking-tighter">
+                    MG<span class="text-brand">CAFE</span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center font-medium">
+                    <a href="#home" class="hover:text-brand transition-colors">Home</a>
+                    <a href="#about" class="hover:text-brand transition-colors">The Vibe</a>
+                    <a href="#menu" class="hover:text-brand transition-colors">Menu</a>
+                    <a href="#contact" class="px-5 py-2.5 bg-brand text-black font-bold rounded-full hover:bg-yellow-300 transition-transform hover:scale-105">Find Us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative pt-20 pb-32 flex items-center min-h-screen">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Burger bg" class="w-full h-full object-cover opacity-30"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/80 to-transparent"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+            <span class="text-brand font-bold tracking-widest uppercase mb-4 block">Defy the Ordinary</span>
+            <h1 class="text-5xl md:text-8xl font-black leading-tight mb-6 uppercase">
+                Not Your <br/> Average <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-yellow-200">Bite.</span>
+            </h1>
+            <p class="mt-4 text-xl text-gray-300 max-w-2xl mb-10">
+                Hand-smashed burgers, crazy loaded fries, and shakes that break the internet. Experience flavor without the filter.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#menu" class="px-8 py-4 bg-brand text-black font-black text-lg rounded-full hover:bg-yellow-300 transition-transform hover:-translate-y-1 shadow-[0_0_20px_rgba(255,215,0,0.3)]">View Our Menu</a>
+                <a href="#contact" class="px-8 py-4 bg-white/10 text-white font-bold text-lg rounded-full hover:bg-white/20 transition-transform hover:-translate-y-1 backdrop-blur-sm border border-white/20">Get Directions</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-24 bg-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative group">
+                    <div class="absolute -inset-2 bg-brand rounded-2xl opacity-20 group-hover:opacity-40 blur transition duration-500"></div>
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Interior" class="relative rounded-2xl w-full object-cover h-[500px] shadow-2xl"/>
+                </div>
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-black mb-6">THE <span class="text-brand">VIBE</span></h2>
+                    <p class="text-gray-400 text-lg mb-6 leading-relaxed">
+                        Born from a love of late-night street food and loud music,
+						 MG CAFE is more than a restaurant—it's a hangout. We source local ingredients,
+						  blast good tunes, and serve up unapologetic, messy, and insanely delicious comfort food.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 mt-8">
+                        <div class="border-l-4 border-brand pl-4">
+                            <h4 class="font-bold text-xl">100% Fresh</h4>
+                            <p class="text-sm text-gray-500">Never frozen beef</p>
+                        </div>
+                        <div class="border-l-4 border-brand pl-4">
+                            <h4 class="font-bold text-xl">Good Tunes</h4>
+                            <p class="text-sm text-gray-500">Curated playlists daily</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section id="menu" class="py-24 bg-zinc-950 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl font-black mb-4">CROWD <span class="text-brand">FAVORITES</span></h2>
+                <p class="text-gray-400 text-lg">The stuff you'll be posting on your stories.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-dark rounded-3xl overflow-hidden border border-white/5 hover:border-brand/50 transition-colors group cursor-pointer">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Burger" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
+                        <div class="absolute top-4 right-4 bg-brand text-black font-black px-4 py-1 rounded-full text-sm">$12.99</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-2">The Cartel Smash</h3>
+                        <p class="text-gray-400">Double wagyu patties, melted american cheese, caramelized onions, and our secret cartel sauce.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-dark rounded-3xl overflow-hidden border border-white/5 hover:border-brand/50 transition-colors group cursor-pointer">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1576107232684-1279f390859f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Fries" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
+                        <div class="absolute top-4 right-4 bg-brand text-black font-black px-4 py-1 rounded-full text-sm">$8.50</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-2">Neon Truffle Fries</h3>
+                        <p class="text-gray-400">Crispy shoestring fries tossed in white truffle oil, parmesan dust, and fresh parsley.</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-dark rounded-3xl overflow-hidden border border-white/5 hover:border-brand/50 transition-colors group cursor-pointer">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Shake" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
+                        <div class="absolute top-4 right-4 bg-brand text-black font-black px-4 py-1 rounded-full text-sm">$7.00</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-2">Midnight Shake</h3>
+                        <p class="text-gray-400">Thick Oreo and dark chocolate milkshake topped with whipped cream,
+							 and brownie chunks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="bg-dark pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-12 pb-16 border-b border-white/10">
+                <div>
+                    <span class="text-3xl font-black tracking-tighter block mb-6">MG<span class="text-brand">CAFE</span></span>
+                    <p class="text-gray-400 mb-6">Serving the best smashed burgers and chaotic good vibes in the city.
+						 Tag us in your photos to be featured!</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-6 uppercase">Drop By</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i data-feather="map-pin" class="text-brand mt-1"></i>
+                            <span>Tanda Gali Number 3<br/>Shikarpur Raod Bualndshahr, UP 203001</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-feather="phone" class="text-brand"></i>
+                            <span>(555) 123-4567</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-6 uppercase">Hours</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i data-feather="clock" class="text-brand mt-1"></i>
+                            <div>
+                                <p class="text-white font-medium">Mon - Thurs</p>
+                                <p>10:00 AM - 10:00 PM</p>
+                            </div>
+                        </li>
+                      
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-gray-600 text-sm">
+                <p>&copy; 2024 MG Cafe. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Renders the icons -->
+    <script>
+      feather.replace()
+    </script>
+</body>
+</html>
